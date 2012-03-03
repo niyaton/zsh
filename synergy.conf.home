@@ -1,0 +1,10 @@
+section: screens
+	sd-shio.local:
+	FATE:
+end
+section: links
+	sd-shio.local:
+		right = FATE
+	FATE:
+		left = sd-shio.local
+end

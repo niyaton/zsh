@@ -1,0 +1,89 @@
+autoload -U compinit
+compinit
+
+setopt prompt_subst
+setopt extended_glob
+
+
+#setting prompt
+SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
+PROMPT=$'%{\e[%(!.0;31.1;32)m%}%n %(!.#.$)%{\e[m%} '
+PROMPT2=$'%{\e[%(!.0;31.1;32)m%}%n %(!.#.$)%{\e[m%} '
+
+RPROMPT=$'%{\e[0;33m%}[%~]%{\e[m%}'
+
+[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
+
+#setting history
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt hist_ignore_all_dups # 重複するコマンド行は古い方を削除
+setopt hist_ignore_dups     # ignore duplication command history list
+setopt share_history        # share command history data
+setopt hist_ignore_space
+
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
+#setopt hist_expand
+
+#setting keybind
+bindkey -v
+
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+
+#setting cd history
+setopt auto_pushd 
+
+# 補完候補にも色付き表示
+eval `dircolors`
+zstyle ':completion:*:default' list-colors ${LS_COLORS}
+
+#setting alias
+alias ls="ls -hF --color=auto"
+#alias sakura="/cygdrive/c/Program\ Files/sakura/sakura.exe"
+#alias emacs=/cygdrive/c/Applications/meadow/bin/Meadow.exe
+#alias lame="/cygdrive/c/Documents\ and\ Settings/sulume/My\ Documents/Tools/lame3.97/lame.exe"
+alias ll="ls -l"
+alias la="ls -a"
+alias usejp="export LANG=ja_JP.UTF-8"
+alias unusejp="export LANG="
+alias tmux="tmux -2u"
+
+PATH=$PATH:~/local/bin
+
+# need the host name set sometimes
+[ -z "$HOSTNAME" ] && export HOSTNAME=$(hostname)
+
+# preserve the X environment variables
+store_display() {
+	export | grep '\(DISPLAY\|XAUTHORITY\)=' > ~/.display.${HOSTNAME}
+}
+
+# read out the X environment variables
+update_display() {
+	[ -r ~/.display.${HOSTNAME} ] && source ~/.display.${HOSTNAME}
+}
+
+# WINDOW is set when we are in a screen session
+if [ -n "$WINDOW" ] ; then 
+	# update the display variables right away
+	update_display
+
+	# setup the preexec function to update the variables before each command
+	preexec () {
+	update_display
+	}
+fi
+
+# this will reset the ssh-auth-sock link and screen display file before we run screen
+_screen_prep() {
+	if [ "$SSH_AUTH_SOCK" != "$HOME/.screen/ssh-auth-sock.$HOSTNAME" ] ; then
+		ln -fs "$SSH_AUTH_SOCK" "$HOME/.screen/ssh-auth-sock.$HOSTNAME"
+	fi
+	store_display
+}
+alias screen='_screen_prep ; screen'
