@@ -1,3 +1,4 @@
+fpath=(~/.zsh/functions/ ${fpath})
 autoload -U compinit
 compinit
 
@@ -32,13 +33,6 @@ linux*)
 	eval `dircolors`
 	zstyle ':completion:*:default' list-colors ${LS_COLORS}
    ;;  
-esac
-
-#for use macvim on CUI
-case "${OSTYPE}" in
-darwin*)
-	MacVim=/Applications/MacVim.app/Contents/MacOS/Vim
-	alias mvim='env $MacVim -u $HOME/.vimrc "$@"'
 esac
 
 ZSHHOME="${HOME}/.zsh"
