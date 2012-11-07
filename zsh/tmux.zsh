@@ -13,4 +13,22 @@ function attach_tmux(){
     fi
   fi
 }
+
+function save-tmux-session(){
+	tmux ls | while read session_line
+	do
+		session=`echo $session_line | cut -d ' ' -f 1`
+
+		tmux list-windows -t $session | while read window_line
+		do
+			echo hoge
+			echo $window_line
+			window=`echo $window_line | cut -d ' ' -f 1`
+
+			tmux select-window -t $window[1,-2]
+			echo `pwd`
+		done
+	done
+}
+
 attach_tmux
