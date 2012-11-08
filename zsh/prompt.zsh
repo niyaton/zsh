@@ -25,11 +25,15 @@ function check_git_untracked_file(){
   }
 }
 
+local user_color=$'%{\e[%(!.0;31.1;32)m%}'
+local rprompt_color=$'%{\e[0;33m%}'
+local fg_my_green=$user_color
+
 function get_vcs_prompt(){
   if [[ -n "${vcs_info_msg_0_}" ]]; then
     #echo -n "${vcs_info_msg_0_}"
     if [[ -z "${vcs_info_msg_4_}" && -z "${vcs_info_msg_3_}" ]]; then
-      color=${fg[green]}
+      color=${fg_my_green}
     elif [[ -n "${vcs_info_msg_4_}" ]]; then
       color=${fg[red]}
     elif [[ -z "${vcs_info_msg_4_}" && -n "${vcs_info_msg_3_}" ]]; then
@@ -37,44 +41,12 @@ function get_vcs_prompt(){
     else
       color=${fg[red]}
     fi
-    #echo  "${vcs_info_msg_1_}"
 
-    #echo  "${vcs_info_msg_2_}"
-    #echo  "${vcs_info_msg_3_}"
-    #echo  "${vcs_info_msg_4_}"
-    #echo  "${vcs_info_msg_5_}"
-
-    echo -n "(%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file)) "
-
-    #if [[ "${vcs_info_msg_0_}" == "git" && -z "${vcs_info_msg_2_}" ]]; then
-    #  echo -n "${vcs_info_msg_1_}"
-      #head_name=$(git name-rev --name-only HEAD)
-      #if [[ -n "${head_name}" ]]; then
-      #  echo -n "${head_name}"
-      #rev=$(git rev-parse --short HEAD)
-      #namerev=$(git name-rev --name-only --no-undefined $rev)
-      #if [[ -n "$namerev" ]]; then
-      #  echo -n "$rev($namerev)"
-      #else
-      #  echo -n "${vcs_info_msg_1_}"
-      #fi
-    #else
-    #  echo "hoge"
-    #  echo -n "${vcs_info_msg_1_}"
-    #fi
-    #if [[ -n "${vcs_info_msg_3_}" || -n "${vcs_info_msg_4_}" ]]; then
-    #  echo -n ":${vcs_info_msg_3_}${vcs_info_msg_4_}"
-    #fi
-    #if [[ -n "${vcs_info_msg_5_}" ]]; then
-    #  echo -n ":${vcs_info_msg_5_}"
-    #fi
-    #echo -n "]"
+    echo -n "$user_color(%{${reset_color}%}%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file)${user_color})%{${reset_color}%} "
   fi
 }
 
 #setting prompt
-user_color=$'%{\e[%(!.0;31.1;32)m%}'
-rprompt_color=$'%{\e[0;33m%}'
 SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
 PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$)%{${reset_color}%} "
 PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
