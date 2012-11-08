@@ -18,17 +18,6 @@ function _precmd_vcs_info(){
 }
 add-zsh-hook precmd _precmd_vcs_info
 
-#setting prompt
-#SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
-#PROMPT=$'%{\e[%(!.0;31.1;32)m%}%n %(!.#.$)%{\e[m%} '
-#PROMPT2=$'%{\e[%(!.0;31.1;32)m%}%n %(!.#.$)%{\e[m%} '
-#sPROMPT=$'%{\e[0;33m%}[%~]%{\e[m%}'
-
-#RPROMPT='[`rprompt-git-current-branch`%~]'
-
-#GIT_PROMPT=`prompt-git-current-branch`
-#[ -n "${GIT_PROMPT}" ] && PROMPT="${PROMPT} ${GIT_PROMPT}"
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
 
 function check_git_untracked_file(){
   if [[ -n $(git ls-files --others --exclude-standard 2> /dev/null) ]] {
@@ -55,7 +44,7 @@ function get_vcs_prompt(){
     #echo  "${vcs_info_msg_4_}"
     #echo  "${vcs_info_msg_5_}"
 
-    echo -n "(%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file))"
+    echo -n "(%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file)) "
 
     #if [[ "${vcs_info_msg_0_}" == "git" && -z "${vcs_info_msg_2_}" ]]; then
     #  echo -n "${vcs_info_msg_1_}"
@@ -86,16 +75,12 @@ function get_vcs_prompt(){
 #setting prompt
 user_color=$'%{\e[%(!.0;31.1;32)m%}'
 rprompt_color=$'%{\e[0;33m%}'
-#user_color="\e[1;32)m"
-#user_color="%{\e[1;32m%}"
-#user_color="%F{green}"
 SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
-#PROMPT=$'%{\e[%(!.0;31.1;32)m%}%n %{\e[m%}\$(get_vcs_prompt) %(!.#.$)%{\e[m%} '
-#PROMPT="${user_color}%n %{\e[m%}\$(get_vcs_prompt) %(!.#.$)%{\e[m%} "
-PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt) %(!.#.$)%{${reset_color}%} "
-#PROMPT2=$'%{\e[%(!.0;31.1;32)m%}%n %(!.#.$)%{\e[m%} '
+PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$)%{${reset_color}%} "
 PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
+
+[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
 
 #PROMPT+="\$(get_vcs_prompt)%E"
 
