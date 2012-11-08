@@ -53,29 +53,3 @@ PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
 
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
-
-#PROMPT+="\$(get_vcs_prompt)%E"
-
-#PROMPT+="\$(
-#if [[ -n \"\${vcs_info_msg_0_}\" ]]; then
-#  echo -n \" [\${vcs_info_msg_0_}:\"
-#  if [[ \"\${vcs_info_msg_0_}\" == \"git\" && -z \"\${vcs_info_msg_2_}\" ]]; then
-#    rev=\$(git rev-parse --short HEAD)
-#    namerev=\$(git name-rev --name-only --no-undefined \$rev)
-#    if [[ -n \"\$namerev\" ]]; then
-#      echo -n \"\$rev(\$namerev)\"
-#    else
-#      echo -n \"\${vcs_info_msg_1_}\"
-#    fi
-#  else
-#    echo -n \"\${vcs_info_msg_1_}\"
-#  fi
-#  if [[ -n \"\${vcs_info_msg_3_}\" || -n \"\${vcs_info_msg_4_}\" ]]; then
-#    echo -n \":\${vcs_info_msg_3_}\${vcs_info_msg_4_}\"
-#  fi
-#  if [[ -n \"\${vcs_info_msg_5_}\" ]]; then
-#    echo -n \":\${vcs_info_msg_5_}\"
-#  fi
-#  echo -n \"]\"
-#fi
-#)%E"
