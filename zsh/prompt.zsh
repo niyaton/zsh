@@ -20,7 +20,7 @@ add-zsh-hook precmd _precmd_vcs_info
 
 
 function check_git_untracked_file(){
-  if [[ -n $(git ls-files --others --exclude-standard 2> /dev/null) ]] {
+  if [[ -n $(git status --short | grep -e '??') ]] {
     echo -n "%{${fg[red]}%}●%{${reset_color}%}"
   }
 }
