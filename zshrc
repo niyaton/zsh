@@ -50,3 +50,8 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a -x $ZSHHOME ]; then
             [ \( -f $i -o -h $i \) -a -r $i ] && . $i
     done
 fi
+
+function tar-pbzip2() {
+    tar cf $1 --use-compress-program=pbzip2 $argv[2,-1]
+}
+

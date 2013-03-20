@@ -7,7 +7,6 @@ darwin*)
 	#for use macvim on CUI
 	#alias vim='env $MacVim/Vim -u $HOME/.vimrc "$@"'
 	#alias gvim='$MacVim/mvim --remote-tab-silent "$@"'
-	alias gitx=/Applications/GitX.app/Contents/MacOS/gitx
 	;;
 linux*)
 	alias ls="ls -hF --color=auto"
