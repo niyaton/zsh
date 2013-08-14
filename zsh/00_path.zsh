@@ -3,6 +3,7 @@
 
 #for homebrew
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/share/python:$PATH
 #export PATH=$PATH:PATH=/usr/local/bin
 
