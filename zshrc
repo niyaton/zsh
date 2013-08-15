@@ -7,13 +7,6 @@ autoload zed
 #setopt prompt_subst
 #setopt extended_glob
 #
-##setting prompt
-#SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
-#PROMPT=$'%{\e[%(!.0;31.1;32)m%}%n %(!.#.$)%{\e[m%} '
-#PROMPT2=$'%{\e[%(!.0;31.1;32)m%}%n %(!.#.$)%{\e[m%} '
-#RPROMPT=$'%{\e[0;33m%}[%~]%{\e[m%}'
-#
-#[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
 
 #setting keybind
 bindkey -v
