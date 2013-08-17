@@ -41,7 +41,3 @@ function tar-pbzip2() {
 
 #for z
 #. `brew --prefix`/etc/profile.d/z.sh
-
-
-
-
