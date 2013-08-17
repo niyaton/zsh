@@ -1,6 +1,17 @@
 # Initialize pyenv.
-if [ -z "$(printenv TMUX)" ]; then
-	hash pyenv 2>/dev/null && eval "$(pyenv init -| grep -v '^pyenv rehash')"
+# "eval pyenv init -" is much heavy. use cached script.
+if [ -n "$(printenv TMUX)" ]; then
+	source $ZSHHOME/pyenv.init-no-rehash
 else
-	hash pyenv 2>/dev/null && eval "$(pyenv init -)"
+	source $ZSHHOME/pyenv.init
 fi
+
+check_pyenv_init() {
+	pyenv init - | diff - $ZSHHOME/pyenv.init
+	pyenv init - --no-rehash | diff - $ZSHHOME/pyenv.init-no-rehash
+}
+
+update_pyenv_init() {
+	pyenv init - > $ZSHHOME/pyenv.init
+	pyenv init - --no-rehash > $ZSHHOME/pyenv.init-no-rehash
+}
