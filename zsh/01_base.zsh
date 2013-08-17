@@ -31,13 +31,19 @@ esac
 update_zshrc(){
   zcompile ~/.zshrc
   for i in $ZSHHOME/*.zsh; do
+     echo 'compiling zshrc.' $i
      zcompile $i
   done
   case "${OSTYPE}" in 
 	  darwin*)
 		  if [ ! -h ${fpath[1]}/_brew ]; then
+     			  echo "link homebrew completion to ${fpath[1]}"
 			  ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh ${fpath[1]}/_brew
 		  fi
+		  echo "update pyenv init cache"
+		  update_pyenv_init
+		  echo "update rbenv init cache"
+		  update_rbenv_init
 	;;
   esac
 }
