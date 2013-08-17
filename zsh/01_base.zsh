@@ -1,5 +1,5 @@
-fpath=(~/.zsh/functions/ ${fpath})
-autoload -U compinit
+zstyle :compinstall filename "${HOME}/.zshrc"
+autoload -Uz compinit
 compinit
 
 autoload zed
@@ -33,6 +33,13 @@ update_zshrc(){
   for i in $ZSHHOME/*.zsh; do
      zcompile $i
   done
+  case "${OSTYPE}" in 
+	  darwin*)
+		  if [ ! -h ${fpath[1]}/_brew ]; then
+			  ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh ${fpath[1]}/_brew
+		  fi
+	;;
+  esac
 }
 
 function tar-pbzip2() {
