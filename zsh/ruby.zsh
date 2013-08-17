@@ -1,6 +1,17 @@
 # Initialize rbenv.
-if [ -z "$(printenv TMUX)" ]; then
-	hash rbenv 2>/dev/null && eval "$(rbenv init - | grep -v '^rbenv rehash')"
+# "eval rbenv init -" is much heavy. use cached script.
+if [ -n "$(printenv TMUX)" ]; then
+	source $ZSHHOME/rbenv.init-no-rehash
 else
-	hash rbenv 2>/dev/null && eval "$(rbenv init -)"
+	source $ZSHHOME/rbenv.init
 fi
+
+check_rbenv_init() {
+	rbenv init - | diff - $ZSHHOME/rbenv.init
+	rbenv init - --no-rehash | diff - $ZSHHOME/rbenv.init-no-rehash
+}
+
+update_rbenv_init() {
+	rbenv init - > $ZSHHOME/rbenv.init
+	rbenv init - --no-rehash > $ZSHHOME/rbenv.init-no-rehash
+}
