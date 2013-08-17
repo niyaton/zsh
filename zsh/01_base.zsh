@@ -44,6 +44,8 @@ update_zshrc(){
 		  update_pyenv_init
 		  echo "update rbenv init cache"
 		  update_rbenv_init
+		  echo "update JAVAHOME path"
+		  echo $(/usr/libexec/java_home) > $ZSHHOME/java_home
 	;;
   esac
 }
