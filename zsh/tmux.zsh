@@ -30,5 +30,3 @@ function save-tmux-session(){
 		done
 	done
 }
-
-attach_tmux
