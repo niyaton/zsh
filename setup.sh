@@ -1,3 +1,3 @@
-ln -i -h -s $PWD/zsh ~/.zsh
-ln -i -h -s $PWD/zshrc ~/.zshrc
-ln -i -h -s $PWD/zshenv ~/.zshenv
+ln -s $PWD/zsh ~/.zsh
+ln -s $PWD/zshrc ~/.zshrc
+ln -s $PWD/zshenv ~/.zshenv
