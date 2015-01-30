@@ -23,3 +23,5 @@ if [ -n "$(printenv TMUX)" ]; then
 else
 	source $HOME/.zsh/pyenv.init
 fi
+
+typeset -U path
