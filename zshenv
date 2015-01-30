@@ -6,7 +6,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=~/local/bin:$PATH
 
 #for MacTeX
-export PATH=$PATH:/usr/local/texlive/2012/bin/x86_64-darwin
+export PATH=$PATH:/usr/local/texbin
 
 # Initialize rbenv.
 # "eval rbenv init -" is much heavy. use cached script.
