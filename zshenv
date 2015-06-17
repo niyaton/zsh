@@ -8,6 +8,9 @@ export PATH=~/local/bin:$PATH
 #for MacTeX
 export PATH=$PATH:/usr/texbin
 
+#for Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
 # Initialize rbenv.
 # "eval rbenv init -" is much heavy. use cached script.
 if [ -n "$(printenv TMUX)" ]; then
