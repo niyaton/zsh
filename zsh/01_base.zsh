@@ -4,10 +4,6 @@ compinit
 
 autoload zed
 
-#setopt prompt_subst
-#setopt extended_glob
-#
-
 #setting keybind
 bindkey -v
 
