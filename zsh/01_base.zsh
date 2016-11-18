@@ -8,7 +8,7 @@ autoload zed
 bindkey -v
 
 #setting cd history
-setopt auto_pushd 
+setopt auto_pushd
 
 #coloring ls
 eval `dircolors`
