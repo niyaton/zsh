@@ -110,7 +110,7 @@ SETUID 48;5;1;38;5;3 # file that is setuid (u+s)
 SETGID 48;5;1;38;5;3 # file that is setgid (g+s)
 CAPABILITY 30;41 # file with capability
 STICKY_OTHER_WRITABLE 48;5;2;38;5;3 # dir that is sticky and other-writable (+t,o+w)
-OTHER_WRITABLE 48;5;0;38;5;6 # dir that is other-writable (o+w) and not sticky
+OTHER_WRITABLE 38;5;6 # dir that is other-writable (o+w) and not sticky
 STICKY 48;5;6;38;5;3 # dir with the sticky bit set (+t) and not other-writable
 # This is for files with execute permission:
 EXEC 00;38;5;2
