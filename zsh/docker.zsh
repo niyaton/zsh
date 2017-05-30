@@ -1,12 +1,12 @@
 # from http://qiita.com/ariarijp/items/2af853d5ba0f98d98bc6
 function dkgrep() {
-    local PERCOL
+    local FILTER
     if [[ $1 == "" ]]; then
-        PERCOL=percol
+        FILTER="fzf -m"
     else
-        PERCOL="percol --query $1"
+        FILTER="fzf --query $1"
     fi
-    docker ps -a | ${=PERCOL} | awk '{ print $1 }'
+    docker ps -a | ${=FILTER} | awk '{ print $1 }'
 }
 
 function dkkill() {
