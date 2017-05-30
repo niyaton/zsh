@@ -42,7 +42,7 @@ function get_vcs_prompt(){
       color=${fg[red]}
     fi
 
-    echo -n "$user_color(%{${reset_color}%}%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file)${user_color})%{${reset_color}%} "
+    echo -n "$user_color%{${reset_color}%}%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file)${user_color}%{${reset_color}%} "
   fi
 }
 
