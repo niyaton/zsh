@@ -17,4 +17,7 @@ esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# added by travis gem
+[ -f /Users/kenji-f/.travis/travis.sh ] && source /Users/kenji-f/.travis/travis.sh
+
 attach_tmux
