@@ -11,7 +11,7 @@ bindkey -v
 setopt auto_pushd
 
 #coloring ls
-eval `dircolors`
+eval `dircolors ~/.dircolors`
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 
 update_zshrc(){
