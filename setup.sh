@@ -1,3 +1,3 @@
-ln -s $PWD/zsh ~/.zsh
-ln -s $PWD/zshrc ~/.zshrc
-ln -s $PWD/Dracula.dircolors ~/.dircolors
+ln -i -n -s $PWD/zsh ~/.zsh
+ln -i -n -s $PWD/zshrc ~/.zshrc
+ln -i -n -s $PWD/Dracula.dircolors ~/.dircolors
