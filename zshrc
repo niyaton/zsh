@@ -18,3 +18,7 @@ esac
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 attach_tmux
+
+if (which zprof > /dev/null) ;then
+  zprof | cat
+fi
