@@ -2,7 +2,7 @@
 
 case "${OSTYPE}" in
 darwin*)
-	alias ls="ls -hF -G"
+	alias ls="gls -hF --color=auto"
 	alias xargs="gxargs"
 	#for use macvim on CUI
 	#alias vim='env $MacVim/Vim -u $HOME/.vimrc "$@"'
