@@ -11,7 +11,15 @@ bindkey -v
 setopt auto_pushd
 
 #coloring ls
-eval `dircolors ~/.dircolors`
+# TODO too slow
+case "${OSTYPE}" in
+	darwin*)
+		eval `gdircolors ~/.dircolors`
+		;;
+	linux*)
+		eval `dircolors ~/.dircolors`
+		;;
+esac
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 
 update_zshrc(){
