@@ -3,8 +3,8 @@ alias tmux-changekey='tmux set-option -ag prefix C-b'
 alias tmux-revertkey='tmux set-option -ag prefix C-a'
 
 function attach_tmux(){
-  if ( ! test $TMUX ) ; then 
-    if ( tmux has-session ); then
+  if ( ! test $TMUX ) ; then
+    if ( tmux has-session 2> /dev/null ); then
 	if (tmux list-session | grep -v attached); then
             tmux attach-session
         fi
@@ -30,3 +30,5 @@ function save-tmux-session(){
 		done
 	done
 }
+
+attach_tmux
