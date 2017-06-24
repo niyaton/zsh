@@ -9,6 +9,8 @@ function attach_tmux(){
   if ( tmux has-session 2> /dev/null ); then
 	  if (tmux list-session | grep -v attached); then
 		  tmux attach-session
+          else
+		  tmux
 	  fi
   else
 	    tmux
