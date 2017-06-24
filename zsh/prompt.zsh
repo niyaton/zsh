@@ -20,8 +20,10 @@ add-zsh-hook precmd _precmd_vcs_info
 
 
 function check_git_untracked_file(){
-  if [[ -n $(command git status --short | grep -e '??') ]] {
-    echo -n "%{${fg[red]}%}●%{${reset_color}%}"
+  if [[ ! $PWD =~ ".git" ]] {
+    if [[ -n $(command git status --short | grep -e '??') ]] {
+      echo -n "%{${fg[red]}%}●%{${reset_color}%}"
+    }
   }
 }
 
@@ -51,5 +53,6 @@ SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
 PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$)%{${reset_color}%} "
 PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
+RPROMPT="${RPROMPT}${rprompt_color}%*%{${reset_color}%}"
 
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
