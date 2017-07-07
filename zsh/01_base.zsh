@@ -28,6 +28,13 @@ update_zshrc(){
      echo 'compiling zshrc.' $i
      zcompile $i
   done
+  #TODO need refactoring
+  if [[ ${OSTYPE} == darwin* ]]; then
+	  for i in $ZSHHOME/*.zsh.osx; do
+	  	echo 'compiling zshrc.' $i
+	  	zcompile $i
+  done
+  fi
 }
 
 function tar-pbzip2() {
