@@ -6,4 +6,13 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a -x $ZSHHOME ]; then
     done
 fi
 
+# TODO need refactoring
+case "${OSTYPE}" in
+	darwin*)
+		for i in $ZSHHOME/*.zsh.osx; do
+			[ \( -f $i -o -h $i \) -a -r $i ] && source $i
+		done
+		;;
+esac
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

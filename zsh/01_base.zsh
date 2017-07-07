@@ -28,6 +28,13 @@ update_zshrc(){
      echo 'compiling zshrc.' $i
      zcompile $i
   done
+  #TODO need refactoring
+  if [[ ${OSTYPE} == darwin* ]]; then
+	  for i in $ZSHHOME/*.zsh.osx; do
+	  	echo 'compiling zshrc.' $i
+	  	zcompile $i
+  done
+  fi
   if [ ! -h ${fpath[1]}/_brew ]; then
 	  echo "link homebrew completion to ${fpath[1]}"
 	  ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh ${fpath[1]}/_brew
