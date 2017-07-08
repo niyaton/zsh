@@ -11,7 +11,7 @@ case "${OSTYPE}" in
 		export PATH=$PATH:/usr/texbin
 
 		#for Heroku Toolbelt
-		export PATH="/usr/local/heroku/bin:$PATH"
+		export PATH=/usr/local/heroku/bin:$PATH
 		;;
 	linux*)
 		;;
