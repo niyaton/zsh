@@ -1,1 +1,5 @@
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+# setting PATH
+if [ -d ~/.pyenv ]; then
+	PATH=~/.pyenv/bin:$PATH
+	eval "$(pyenv init -)"
+fi
