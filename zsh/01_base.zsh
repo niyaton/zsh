@@ -46,6 +46,3 @@ update_zshrc(){
 function tar-pbzip2() {
     tar cf $1 --use-compress-program=pbzip2 $argv[2,-1]
 }
-
-#for z
-#. `brew --prefix`/etc/profile.d/z.sh
