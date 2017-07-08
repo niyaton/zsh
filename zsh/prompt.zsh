@@ -18,23 +18,22 @@ function _precmd_vcs_info(){
 add-zsh-hook precmd _precmd_vcs_info
 
 
-function check_git_untracked_file(){
-  if [[ ! $PWD =~ ".git" ]] {
-    if [[ -n $(command git status --short | grep -e '??') ]] {
-      echo -n "%{${fg[red]}%}●%{${reset_color}%}"
-    }
-  }
-}
-
 # %(x.true-text.false-text)
 # ! root or normal user
 # root => normal(0), red(31)
 # user => bold(1), green(32)
 local user_color=$'%{\e[%(!.0;31.1;32)m%}'
 local reset_color=$'%{\e[0m%}'
-local rprompt_color=$'%{\e[0;33m%}'
 local fg_my_green=$user_color
 local color
+
+function check_git_untracked_file(){
+  if [[ ! $PWD =~ ".git" ]] {
+    if [[ -n $(command git status --short | grep -e '??') ]] {
+      echo -n "%{\e[1;31m%}●%{${reset_color}%}"
+    }
+  }
+}
 
 function get_vcs_prompt(){
   if [[ -n "${vcs_info_msg_0_}" ]]; then
@@ -54,6 +53,7 @@ function get_vcs_prompt(){
 }
 
 #setting prompt
+local rprompt_color=$'%{\e[1;33m%}'
 SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
 PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$)%{${reset_color}%} "
 PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
