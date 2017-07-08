@@ -1,7 +1,6 @@
 setopt prompt_subst
 setopt extended_glob
 
-autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git hg svn cvs
@@ -12,10 +11,9 @@ zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' max-exports 6
 
-function _precmd_vcs_info(){
+function precmd(){
   LANG=en_US.UTF-8 vcs_info
 }
-add-zsh-hook precmd _precmd_vcs_info
 
 
 # %(x.true-text.false-text)
