@@ -24,7 +24,6 @@ add-zsh-hook precmd _precmd_vcs_info
 # user => bold(1), green(32)
 local user_color=$'%{\e[%(!.0;31.1;32)m%}'
 local reset_color=$'%{\e[0m%}'
-local fg_my_green=$user_color
 local color
 
 function check_git_untracked_file(){
@@ -39,7 +38,7 @@ function get_vcs_prompt(){
   if [[ -n "${vcs_info_msg_0_}" ]]; then
     #echo -n "${vcs_info_msg_0_}"
     if [[ -z "${vcs_info_msg_4_}" && -z "${vcs_info_msg_3_}" ]]; then
-      color=${fg_my_green}
+      color=${user_color}
     elif [[ -n "${vcs_info_msg_4_}" ]]; then
       color=$'%{\e[1;31m%}'
     elif [[ -z "${vcs_info_msg_4_}" && -n "${vcs_info_msg_3_}" ]]; then
@@ -48,14 +47,14 @@ function get_vcs_prompt(){
       color=$'%{\e[1;31m%}'
     fi
 
-    echo -n "$user_color%{${reset_color}%}%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file)${user_color}%{${reset_color}%} "
+    echo -n "%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file) "
   fi
 }
 
 #setting prompt
 local rprompt_color=$'%{\e[1;33m%}'
 SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
-PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$)%{${reset_color}%} "
+PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$) "
 PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
 RPROMPT="${RPROMPT}${rprompt_color}%*%{${reset_color}%}"
