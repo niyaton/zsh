@@ -35,8 +35,6 @@ update_zshrc(){
 	  	zcompile $i
   done
   fi
-  echo "update pyenv init cache"
-  update_pyenv_init
   echo "update rbenv init cache"
   update_rbenv_init
   echo "update JAVAHOME path"
