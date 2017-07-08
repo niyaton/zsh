@@ -35,10 +35,6 @@ update_zshrc(){
 	  	zcompile $i
   done
   fi
-  if [ ! -h ${fpath[1]}/_brew ]; then
-	  echo "link homebrew completion to ${fpath[1]}"
-	  ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh ${fpath[1]}/_brew
-  fi
   echo "update pyenv init cache"
   update_pyenv_init
   echo "update rbenv init cache"
