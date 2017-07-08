@@ -31,9 +31,10 @@ function save-tmux-session(){
 	done
 }
 
-function print_tmux_color_pallet(){
-	for i in {0..255}; do
-		printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+function print_color_pallet(){
+	for i in {000..255}; do
+		printf "\e[38;5;${i}m ${i}\e[0m"
+		[ $(($i % 16)) -eq 15 ] && echo
 	done
 }
 
