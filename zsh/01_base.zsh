@@ -35,8 +35,6 @@ update_zshrc(){
 	  	zcompile $i
   done
   fi
-  echo "update rbenv init cache"
-  update_rbenv_init
   echo "update JAVAHOME path"
   echo $(/usr/libexec/java_home) > $ZSHHOME/java_home
 }
