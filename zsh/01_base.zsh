@@ -35,8 +35,6 @@ update_zshrc(){
 	  	zcompile $i
   done
   fi
-  echo "update JAVAHOME path"
-  echo $(/usr/libexec/java_home) > $ZSHHOME/java_home
 }
 
 function tar-pbzip2() {
