@@ -18,11 +18,11 @@ case "${OSTYPE}" in
 esac
 
 # Initialize rbenv.
-# "eval rbenv init -" is much heavy. use cached script.
-if [ -n "$(printenv TMUX)" ]; then
-	source $HOME/.zsh/rbenv.init-no-rehash
-else
-	source $HOME/.zsh/rbenv.init
+# Only execute eval rbenv init on startup
+if [[ "$(whence -w rbenv 2>/dev/null )" != *function ]]; then
+	if which pyenv > /dev/null; then
+		eval "$(rbenv init -)"
+	fi
 fi
 
 typeset -U path
