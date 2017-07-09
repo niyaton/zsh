@@ -18,5 +18,5 @@ esac
 alias ll="ls -l"
 alias la="ls -a"
 alias usejp="export LANG=ja_JP.UTF-8"
-alias unusejp="export LANG="
+alias unusejp="export LANG=en_US.UTF-8"
 alias tmux="tmux -2u"
