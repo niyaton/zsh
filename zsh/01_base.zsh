@@ -13,7 +13,7 @@ if [[ -n ${ZSHHOME}/compaudit_check(#qN.mh+24) ]]; then
 	compinit -d
 	touch ${ZSHHOME}/compaudit_check
 else
-	compinit -i -d
+	compinit -C -d
 fi
 
 autoload zed
