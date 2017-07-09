@@ -37,5 +37,3 @@ function print_color_pallet(){
 		[ $(($i % 16)) -eq 15 ] && echo
 	done
 }
-
-attach_tmux
