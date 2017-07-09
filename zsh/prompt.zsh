@@ -1,5 +1,4 @@
 setopt prompt_subst
-setopt extended_glob
 
 autoload -Uz vcs_info
 
