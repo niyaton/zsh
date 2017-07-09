@@ -25,7 +25,7 @@ bindkey -v
 setopt auto_pushd
 
 #coloring ls
-# TODO too slow
+# TODO need refactoring
 case "${OSTYPE}" in
 	darwin*)
 		eval `gdircolors ~/.dircolors`
