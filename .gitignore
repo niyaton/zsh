@@ -3,5 +3,3 @@
 *.zwc
 *.swp
 vim/bundle
-zsh/rbenv.init
-zsh/rbenv.init-no-rehash
