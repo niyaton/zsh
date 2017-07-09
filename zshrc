@@ -1,19 +1,16 @@
 export ZSHHOME="${HOME}/.zsh"
 
+local -a PATTERNS
+PATTERNS+="*.zsh"
+[[ ${OSTYPE} == darwin* ]] && PATTERNS+="*.zsh.osx"
+
 if [ -d $ZSHHOME -a -r $ZSHHOME -a -x $ZSHHOME ]; then
-    for i in $ZSHHOME/*.zsh; do
-        [ \( -f $i -o -h $i \) -a -r $i ] && source $i
+    for pattern in $PATTERNS; do
+    	for i in $ZSHHOME/*.zsh; do
+       		[ \( -f $i -o -h $i \) -a -r $i ] && source $i
+    	done
     done
 fi
-
-# TODO need refactoring
-case "${OSTYPE}" in
-	darwin*)
-		for i in $ZSHHOME/*.zsh.osx; do
-			[ \( -f $i -o -h $i \) -a -r $i ] && source $i
-		done
-		;;
-esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
