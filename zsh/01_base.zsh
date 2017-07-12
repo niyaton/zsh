@@ -9,7 +9,6 @@ setopt extended_glob
 # - 'mh+24' matches files (or directories or whatever) that are older than 24 hours.
 autoload -Uz compinit
 if [[ -n ${ZSHHOME}/compaudit_check(#qN.mh+24) ]]; then
-	echo check compaudit
 	compinit -d
 	touch ${ZSHHOME}/compaudit_check
 else
