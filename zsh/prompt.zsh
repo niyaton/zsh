@@ -19,7 +19,7 @@ function precmd(){
 # ! root or normal user
 # root => normal(0), red(31)
 # user => bold(1), green(32)
-local user_color=$'%{\e[%(!.0;31.1;32)m%}'
+local user_color=$'%{\e[1;32m%}'
 local reset_color=$'%{\e[0m%}'
 local color
 
