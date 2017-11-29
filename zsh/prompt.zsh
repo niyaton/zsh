@@ -21,6 +21,7 @@ function precmd(){
 # user => bold(1), green(32)
 local user_color=$'%{\e[1;32m%}'
 local reset_color=$'%{\e[0m%}'
+local host_color=$'%{\e[35m%}'
 local color
 
 function check_git_untracked_file(){
@@ -51,9 +52,7 @@ function get_vcs_prompt(){
 #setting prompt
 local rprompt_color=$'%{\e[1;33m%}'
 SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
-PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$) "
+PROMPT="${host_color}${HOST%%.*} ${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$) "
 PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
 RPROMPT="${RPROMPT}${rprompt_color}|%*%{${reset_color}%}"
-
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
