@@ -12,6 +12,9 @@ case "${OSTYPE}" in
 
 		#for Heroku Toolbelt
 		export PATH=/usr/local/heroku/bin:$PATH
+
+		#for composer
+		export PATH=$PATH:$HOME/.composer/vendor/bin
 		;;
 	linux*)
 		;;
