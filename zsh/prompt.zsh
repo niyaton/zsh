@@ -48,12 +48,19 @@ function get_vcs_prompt(){
   fi
 }
 
+function _get_anaconda_prompt(){
+  if [[ -v CONDA_DEFAULT_ENV ]]; then
+    echo -n "${rprompt_color}|🐍${CONDA_DEFAULT_ENV:#base}${reset_color}"
+  fi
+}
+
 #setting prompt
 local rprompt_color=$'%{\e[1;33m%}'
 SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
 PROMPT="${user_color}%n %{${reset_color}%}\$(get_vcs_prompt)%(!.#.$) "
 PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
-RPROMPT="${RPROMPT}${rprompt_color}|%*%{${reset_color}%}"
+RPROMPT+="\$(_get_anaconda_prompt)"
+RPROMPT+="${rprompt_color}|%*%{${reset_color}%}"
 
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
