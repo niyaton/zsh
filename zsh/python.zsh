@@ -1,3 +1,4 @@
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 case "${OSTYPE}" in
   darwin*)
     source ~/anaconda3/etc/profile.d/conda.sh
