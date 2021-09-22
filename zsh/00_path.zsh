@@ -9,9 +9,6 @@ case "${OSTYPE}" in
 
 		#for MacTeX
 		export PATH=$PATH:/usr/texbin
-
-		#for composer
-		export PATH=$PATH:$HOME/.composer/vendor/bin
 		;;
 	linux*)
 		;;
