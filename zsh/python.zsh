@@ -1,8 +1,10 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 case "${OSTYPE}" in
   darwin*)
-    source ~/anaconda3/etc/profile.d/conda.sh
     export CONDA_CHANGEPS1=no
+    if [ -e ~/anaconda3/etc/profile.d/conda.sh ]; then
+      source ~/anaconda3/etc/profile.d/conda.sh
+    fi
     ;;
   linux*)
     if which pyenv &> /dev/null; then eval "$(pyenv init -)"; fi
