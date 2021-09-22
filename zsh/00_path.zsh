@@ -10,9 +10,6 @@ case "${OSTYPE}" in
 		#for MacTeX
 		export PATH=$PATH:/usr/texbin
 
-		#for Heroku Toolbelt
-		export PATH=/usr/local/heroku/bin:$PATH
-
 		#for composer
 		export PATH=$PATH:$HOME/.composer/vendor/bin
 		;;
