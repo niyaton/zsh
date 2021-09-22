@@ -49,7 +49,3 @@ update_zshrc(){
   done
   fi
 }
-
-function tar-pbzip2() {
-    tar cf $1 --use-compress-program=pbzip2 $argv[2,-1]
-}
