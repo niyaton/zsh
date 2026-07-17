@@ -118,6 +118,7 @@ EXEC 00;38;5;2
 ## Archives or compressed (violet + bold for compression)
 .tar    00;38;5;4
 .tgz    00;38;5;4
+.zst    00;38;5;4
 .arj    00;38;5;4
 .taz    00;38;5;4
 .lzh    00;38;5;4
