@@ -33,11 +33,6 @@ case "${OSTYPE}" in
 esac
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 
-case "${OSTYPE}" in
-	darwin*)
-		export LANG="ja_JP.UTF-8"
-esac
-
 update_zshrc(){
   zcompile ~/.zshrc
   for i in $ZSHHOME/*.zsh; do
