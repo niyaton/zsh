@@ -12,6 +12,13 @@ case "${OSTYPE}" in
 			$path
 			/usr/texbin
 		)
+
+		# TODO:
+		# Replace this block with `brew shellenv` after verifying the differences
+		# (FPATH/MANPATH/INFOPATH).
+		#
+		# Long-term goal: generate the result at build time instead of executing
+		# `brew shellenv` on every shell startup.
 		export HOMEBREW_PREFIX="/opt/homebrew";
 		export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
 		export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}";
