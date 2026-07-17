@@ -17,4 +17,6 @@ esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-attach_tmux
+if [[ -z $TMUX && $TERM_PROGRAM != WezTerm ]]; then
+	attach_tmux
+fi
