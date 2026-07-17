@@ -15,8 +15,6 @@ else
 	compinit -C -d
 fi
 
-autoload zed
-
 #setting keybind
 bindkey -v
 
@@ -35,6 +33,11 @@ case "${OSTYPE}" in
 esac
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 
+case "${OSTYPE}" in
+	darwin*)
+		export LANG="ja_JP.UTF-8"
+esac
+
 update_zshrc(){
   zcompile ~/.zshrc
   for i in $ZSHHOME/*.zsh; do
@@ -49,3 +52,11 @@ update_zshrc(){
   done
   fi
 }
+
+if command -v nvim >/dev/null 2>&1; then
+    export EDITOR=nvim
+    export VISUAL=nvim
+else
+    export EDITOR=vim
+    export VISUAL=vim
+fi
