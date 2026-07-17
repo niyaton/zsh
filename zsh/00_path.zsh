@@ -1,3 +1,5 @@
+typeset -U path fpath
+
 case "${OSTYPE}" in
 	darwin*)
 		#for homebrew
@@ -13,5 +15,3 @@ case "${OSTYPE}" in
 	linux*)
 		;;
 esac
-
-typeset -U path
