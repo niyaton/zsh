@@ -3,7 +3,6 @@
 case "${OSTYPE}" in
 darwin*)
 	alias ls="gls -hF --color=auto"
-	alias xargs="gxargs"
 	;;
 linux*)
 	alias ls="ls -hF --color=auto"
