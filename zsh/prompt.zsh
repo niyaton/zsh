@@ -6,7 +6,6 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats '%s' '%b' '%i' '%c' '%u'
 zstyle ':vcs_info:*' actionformats '%s' '%b' '%i' '%c' '%u' '%a'
 zstyle ':vcs_info:*' nvcsformats ""
-zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' max-exports 6
 
