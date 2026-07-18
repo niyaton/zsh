@@ -33,14 +33,15 @@ function check_git_untracked_file(){
 function _get_vcs_prompt(){
   [[ -z "${vcs_info_msg_0_}" ]] && return
 
-  if [[ -z "${vcs_info_msg_4_}" && -z "${vcs_info_msg_3_}" ]]; then
-    color=${user_color}
-  elif [[ -n "${vcs_info_msg_4_}" ]]; then
+  if [[ -n $vcs_info_msg_4_ ]]; then
+    # unstaged changes
     color=$'%{\e[1;31m%}'
-  elif [[ -z "${vcs_info_msg_4_}" && -n "${vcs_info_msg_3_}" ]]; then
+  elif [[ -n $vcs_info_msg_3_ ]]; then
+    # staged changes
     color=$'%{\e[1;33m%}'
   else
-    color=$'%{\e[1;31m%}'
+    # clean
+    color=$user_color
   fi
 
   echo -n "%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file) "
