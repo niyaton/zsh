@@ -73,3 +73,6 @@ RPROMPT+="\$(_get_python_venv_prompt)"
 RPROMPT+="${rprompt_color}|%*%{${reset_color}%}"
 
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
+
+# Hide the right prompt after pressing Enter to keep command history clean.
+setopt transient_rprompt
