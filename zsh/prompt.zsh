@@ -2,7 +2,7 @@ setopt prompt_subst
 
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' enable git hg svn cvs
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats '%s' '%b' '%i' '%c' '%u'
 zstyle ':vcs_info:*' actionformats '%s' '%b' '%i' '%c' '%u' '%a'
 zstyle ':vcs_info:*' nvcsformats ""
