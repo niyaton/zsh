@@ -3,11 +3,11 @@ setopt prompt_subst
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' formats '%s' '%b' '%i' '%c' '%u'
-zstyle ':vcs_info:*' actionformats '%s' '%b' '%i' '%c' '%u' '%a'
+zstyle ':vcs_info:*' formats '%s' '%b' '%c' '%u'
+zstyle ':vcs_info:*' actionformats '%s' '%b' '%c' '%u' '%a'
 zstyle ':vcs_info:*' nvcsformats ""
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' max-exports 6
+zstyle ':vcs_info:*' max-exports 5
 
 function precmd(){
   LANG=en_US.UTF-8 vcs_info
@@ -33,10 +33,10 @@ function check_git_untracked_file(){
 function _get_vcs_prompt(){
   [[ -z "${vcs_info_msg_0_}" ]] && return
 
-  if [[ -n $vcs_info_msg_4_ ]]; then
+  if [[ -n $vcs_info_msg_3_ ]]; then
     # unstaged changes
     color=$'%{\e[1;31m%}'
-  elif [[ -n $vcs_info_msg_3_ ]]; then
+  elif [[ -n $vcs_info_msg_2_ ]]; then
     # staged changes
     color=$'%{\e[1;33m%}'
   else
