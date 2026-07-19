@@ -74,10 +74,13 @@ function _get_anaconda_prompt(){
   fi
 }
 
-#setting prompt
-_rprompt_color='%B%F{yellow}'
+# setting left prompt
 PROMPT="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%(!.#.$) "
+# setting continuation prompt
 PROMPT2="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
+
+# setting right prompt
+_rprompt_color='%B%F{yellow}'
 RPROMPT="${_rprompt_color}[%~]%{${_reset_color}%}"
 RPROMPT+="\$(_get_anaconda_prompt)"
 RPROMPT+="\$(_get_python_venv_prompt)"
