@@ -1,6 +1,9 @@
 setopt prompt_subst
 
 autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
+
+add-zsh-hook precmd vcs_info
 
 # formats:
 #   %s -> vcs_info_msg_0_ (VCS)
@@ -17,11 +20,6 @@ zstyle ':vcs_info:*' nvcsformats ""
 # max-exports must be >= the number of exported fields.
 zstyle ':vcs_info:*' max-exports 5
 zstyle ':vcs_info:*' check-for-changes true
-
-function precmd(){
-  vcs_info
-}
-
 
 if (( EUID == 0 )); then
   # root user
