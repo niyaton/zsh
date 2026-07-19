@@ -1,3 +1,4 @@
+# Allow $(...) and ${...} in PROMPT and RPROMPT.
 setopt prompt_subst
 
 autoload -Uz vcs_info
