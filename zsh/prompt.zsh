@@ -26,8 +26,10 @@ function precmd(){
 if (( EUID == 0 )); then
   # root user
   _user_color='%F{red}'
+  _prompt_symbol='#'
 else
   _user_color='%B%F{green}'
+  _prompt_symbol='$'
 fi
 _reset_color='%b%f'
 
@@ -75,7 +77,7 @@ function _get_anaconda_prompt(){
 }
 
 # setting left prompt
-PROMPT="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%(!.#.$) "
+PROMPT="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)${_prompt_symbol} "
 # setting continuation prompt
 PROMPT2="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
 
