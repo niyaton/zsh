@@ -65,7 +65,7 @@ function _get_anaconda_prompt(){
 local rprompt_color=$'%{\e[1;33m%}'
 SPROMPT=$'%B%{\e[1;34m%}%r is correct? [n,y,a,e]:%{\e[m%}%b '
 PROMPT="${user_color}%n %{${reset_color}%}\$(_get_vcs_prompt)%(!.#.$) "
-PROMPT2="${user_color}%n %(!.#.$)%{${reset_color}%} "
+PROMPT2="${user_color}%n %{${reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
 RPROMPT+="\$(_get_anaconda_prompt)"
 RPROMPT+="\$(_get_python_venv_prompt)"
