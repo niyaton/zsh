@@ -27,8 +27,8 @@ function precmd(){
 # ! root or normal user
 # root => normal(0), red(31)
 # user => bold(1), green(32)
-local user_color=$'%{\e[%(!.0;31.1;32)m%}'
-local reset_color='%b%f'
+_user_color=$'%{\e[%(!.0;31.1;32)m%}'
+_reset_color='%b%f'
 
 function _check_git_untracked_file(){
   [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 1
@@ -48,39 +48,39 @@ function _get_vcs_prompt(){
     color='%B%F{yellow}'
   else
     # clean
-    color=$user_color
+    color=$_user_color
   fi
 
   local untracked=""
   if _check_git_untracked_file; then
-    untracked="%B%F{red}●%{${reset_color}%}"
+    untracked="%B%F{red}●%{${_reset_color}%}"
   fi
 
-  echo -n "%{$color%}${vcs_info_msg_1_}%{$reset_color%}${untracked} "
+  echo -n "%{$color%}${vcs_info_msg_1_}%{$_reset_color%}${untracked} "
 }
 
 function _get_python_venv_prompt(){
   if [[ -v VIRTUAL_ENV ]]; then
     local venv_name
     venv_name=`basename ${VIRTUAL_ENV}`
-    echo -n "${rprompt_color}|${venv_name:#venv}${reset_color}"
+    echo -n "${_rprompt_color}|${venv_name:#venv}${_reset_color}"
   fi
 }
 
 function _get_anaconda_prompt(){
   if [[ -v CONDA_DEFAULT_ENV ]]; then
-    echo -n "${rprompt_color}|🐍${CONDA_DEFAULT_ENV:#base}${reset_color}"
+    echo -n "${_rprompt_color}|🐍${CONDA_DEFAULT_ENV:#base}${_reset_color}"
   fi
 }
 
 #setting prompt
-local rprompt_color='%B%F{yellow}'
-PROMPT="${user_color}%n %{${reset_color}%}\$(_get_vcs_prompt)%(!.#.$) "
-PROMPT2="${user_color}%n %{${reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
-RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
+_rprompt_color='%B%F{yellow}'
+PROMPT="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%(!.#.$) "
+PROMPT2="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
+RPROMPT="${_rprompt_color}[%~]%{${_reset_color}%}"
 RPROMPT+="\$(_get_anaconda_prompt)"
 RPROMPT+="\$(_get_python_venv_prompt)"
-RPROMPT+="${rprompt_color}|%*%{${reset_color}%}"
+RPROMPT+="${_rprompt_color}|%*%{${_reset_color}%}"
 
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%F{magenta}${HOST%%.*}%f ${PROMPT}"
 
