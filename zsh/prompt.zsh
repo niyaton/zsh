@@ -54,10 +54,10 @@ _get_vcs_prompt() {
 
   local untracked=""
   if _check_git_untracked_file; then
-    untracked="%B%F{red}●%{${_reset_color}%}"
+    untracked="%B%F{red}●${_reset_color}"
   fi
 
-  echo -n "%{$color%}${vcs_info_msg_1_}%{$_reset_color%}${untracked} "
+  echo -n "${color}${vcs_info_msg_1_}${_reset_color}${untracked} "
 }
 
 _get_python_venv_prompt() {
@@ -75,17 +75,17 @@ _get_anaconda_prompt() {
 }
 
 # setting left prompt
-PROMPT="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)${_prompt_symbol} "
+PROMPT="${_user_color}%n ${_reset_color}\$(_get_vcs_prompt)${_prompt_symbol} "
 # setting continuation prompt
-PROMPT2="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
+PROMPT2="${_user_color}%n ${_reset_color}\$(_get_vcs_prompt)%F{green}▶%f "
 
 # setting right prompt
 # Hide the right prompt after pressing Enter to keep command history clean.
 setopt transient_rprompt
 _rprompt_color='%B%F{yellow}'
-RPROMPT="${_rprompt_color}[%~]%{${_reset_color}%}"
+RPROMPT="${_rprompt_color}[%~]${_reset_color}"
 RPROMPT+="\$(_get_anaconda_prompt)"
 RPROMPT+="\$(_get_python_venv_prompt)"
-RPROMPT+="${_rprompt_color}|%*%{${_reset_color}%}"
+RPROMPT+="${_rprompt_color}|%*${_reset_color}"
 
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%F{magenta}${HOST%%.*}%f ${PROMPT}"
