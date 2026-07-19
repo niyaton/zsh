@@ -22,11 +22,11 @@ local user_color=$'%{\e[%(!.0;31.1;32)m%}'
 local reset_color=$'%{\e[0m%}'
 
 function check_git_untracked_file(){
-  if [[ ! $PWD =~ ".git" ]] {
-    if [[ -n $(command git status --short | grep -e '??') ]] {
-      echo -n "%{\e[1;31m%}●%{${reset_color}%}"
-    }
-  }
+  [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return
+
+  if [[ -n $(command git ls-files --others --exclude-standard 2>/dev/null) ]]; then
+    echo -n "%{\e[1;31m%}●%{${reset_color}%}"
+  fi
 }
 
 function _get_vcs_prompt(){
