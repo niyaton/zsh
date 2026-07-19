@@ -2,12 +2,21 @@ setopt prompt_subst
 
 autoload -Uz vcs_info
 
+# formats:
+#   %s -> vcs_info_msg_0_ (VCS)
+#   %b -> vcs_info_msg_1_ (branch)
+#   %c -> vcs_info_msg_2_ (staged)
+#   %u -> vcs_info_msg_3_ (unstaged)
+#
+# actionformats additionally exports:
+#   %a -> vcs_info_msg_4_ (action)
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats '%s' '%b' '%c' '%u'
 zstyle ':vcs_info:*' actionformats '%s' '%b' '%c' '%u' '%a'
 zstyle ':vcs_info:*' nvcsformats ""
-zstyle ':vcs_info:*' check-for-changes true
+# max-exports must be >= the number of exported fields.
 zstyle ':vcs_info:*' max-exports 5
+zstyle ':vcs_info:*' check-for-changes true
 
 function precmd(){
   vcs_info
