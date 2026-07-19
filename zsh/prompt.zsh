@@ -76,7 +76,11 @@ _get_anaconda_prompt() {
 }
 
 # setting left prompt
-PROMPT="${_user_color}%n ${_reset_color}\$(_get_vcs_prompt)${_prompt_symbol} "
+_host_prefix=""
+if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]]; then
+  _host_prefix="%F{magenta}${HOST%%.*}%f "
+fi
+PROMPT="${_host_prefix}${_user_color}%n ${_reset_color}\$(_get_vcs_prompt)${_prompt_symbol} "
 # setting continuation prompt
 PROMPT2="${_user_color}%n ${_reset_color}\$(_get_vcs_prompt)%F{green}▶%f "
 
@@ -88,5 +92,3 @@ RPROMPT="${_rprompt_color}[%~]${_reset_color}"
 RPROMPT+="\$(_get_anaconda_prompt)"
 RPROMPT+="\$(_get_python_venv_prompt)"
 RPROMPT+="${_rprompt_color}|%*${_reset_color}"
-
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%F{magenta}${HOST%%.*}%f ${PROMPT}"
