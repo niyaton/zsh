@@ -23,11 +23,12 @@ function precmd(){
 }
 
 
-# %(x.true-text.false-text)
-# ! root or normal user
-# root => normal(0), red(31)
-# user => bold(1), green(32)
-_user_color=$'%{\e[%(!.0;31.1;32)m%}'
+if (( EUID == 0 )); then
+  # root user
+  _user_color='%F{red}'
+else
+  _user_color='%B%F{green}'
+fi
 _reset_color='%b%f'
 
 function _check_git_untracked_file(){
