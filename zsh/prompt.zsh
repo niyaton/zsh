@@ -33,13 +33,13 @@ else
 fi
 _reset_color='%b%f'
 
-function _check_git_untracked_file(){
+_check_git_untracked_file() {
   [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 1
 
   [[ -n $(command git ls-files --others --exclude-standard 2>/dev/null) ]]
 }
 
-function _get_vcs_prompt(){
+_get_vcs_prompt() {
   [[ -z $vcs_info_msg_0_ ]] && return
 
   local color
@@ -62,7 +62,7 @@ function _get_vcs_prompt(){
   echo -n "%{$color%}${vcs_info_msg_1_}%{$_reset_color%}${untracked} "
 }
 
-function _get_python_venv_prompt(){
+_get_python_venv_prompt() {
   if [[ -v VIRTUAL_ENV ]]; then
     local venv_name
     venv_name=`basename ${VIRTUAL_ENV}`
@@ -70,7 +70,7 @@ function _get_python_venv_prompt(){
   fi
 }
 
-function _get_anaconda_prompt(){
+_get_anaconda_prompt() {
   if [[ -v CONDA_DEFAULT_ENV ]]; then
     echo -n "${_rprompt_color}|🐍${CONDA_DEFAULT_ENV:#base}${_reset_color}"
   fi
