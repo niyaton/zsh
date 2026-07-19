@@ -80,6 +80,8 @@ PROMPT="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)${_prompt_symbol}
 PROMPT2="${_user_color}%n %{${_reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
 
 # setting right prompt
+# Hide the right prompt after pressing Enter to keep command history clean.
+setopt transient_rprompt
 _rprompt_color='%B%F{yellow}'
 RPROMPT="${_rprompt_color}[%~]%{${_reset_color}%}"
 RPROMPT+="\$(_get_anaconda_prompt)"
@@ -87,6 +89,3 @@ RPROMPT+="\$(_get_python_venv_prompt)"
 RPROMPT+="${_rprompt_color}|%*%{${_reset_color}%}"
 
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%F{magenta}${HOST%%.*}%f ${PROMPT}"
-
-# Hide the right prompt after pressing Enter to keep command history clean.
-setopt transient_rprompt
