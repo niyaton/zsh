@@ -28,7 +28,7 @@ function precmd(){
 # root => normal(0), red(31)
 # user => bold(1), green(32)
 local user_color=$'%{\e[%(!.0;31.1;32)m%}'
-local reset_color=$'%{\e[0m%}'
+local reset_color='%b%f'
 
 function _check_git_untracked_file(){
   [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 1
@@ -42,10 +42,10 @@ function _get_vcs_prompt(){
   local color
   if [[ -n $vcs_info_msg_3_ ]]; then
     # unstaged changes
-    color=$'%{\e[1;31m%}'
+    color='%B%F{red}'
   elif [[ -n $vcs_info_msg_2_ ]]; then
     # staged changes
-    color=$'%{\e[1;33m%}'
+    color='%B%F{yellow}'
   else
     # clean
     color=$user_color
@@ -53,7 +53,7 @@ function _get_vcs_prompt(){
 
   local untracked=""
   if _check_git_untracked_file; then
-    untracked="%{\e[1;31m%}●%{${reset_color}%}"
+    untracked="%B%F{red}●%{${reset_color}%}"
   fi
 
   echo -n "%{$color%}${vcs_info_msg_1_}%{$reset_color%}${untracked} "
@@ -74,7 +74,7 @@ function _get_anaconda_prompt(){
 }
 
 #setting prompt
-local rprompt_color=$'%{\e[1;33m%}'
+local rprompt_color='%B%F{yellow}'
 PROMPT="${user_color}%n %{${reset_color}%}\$(_get_vcs_prompt)%(!.#.$) "
 PROMPT2="${user_color}%n %{${reset_color}%}\$(_get_vcs_prompt)%F{green}▶%f "
 RPROMPT="${rprompt_color}[%~]%{${reset_color}%}"
@@ -82,7 +82,7 @@ RPROMPT+="\$(_get_anaconda_prompt)"
 RPROMPT+="\$(_get_python_venv_prompt)"
 RPROMPT+="${rprompt_color}|%*%{${reset_color}%}"
 
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT=$'%{\e[35m%}'"${HOST%%.*} ${PROMPT}"
+[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%F{magenta}${HOST%%.*}%f ${PROMPT}"
 
 # Hide the right prompt after pressing Enter to keep command history clean.
 setopt transient_rprompt
