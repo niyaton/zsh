@@ -10,7 +10,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' max-exports 5
 
 function precmd(){
-  LANG=en_US.UTF-8 vcs_info
+  vcs_info
 }
 
 
