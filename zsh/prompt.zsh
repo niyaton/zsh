@@ -20,7 +20,6 @@ function precmd(){
 # user => bold(1), green(32)
 local user_color=$'%{\e[%(!.0;31.1;32)m%}'
 local reset_color=$'%{\e[0m%}'
-local color
 
 function check_git_untracked_file(){
   if [[ ! $PWD =~ ".git" ]] {
@@ -31,8 +30,9 @@ function check_git_untracked_file(){
 }
 
 function _get_vcs_prompt(){
-  [[ -z "${vcs_info_msg_0_}" ]] && return
+  [[ -z $vcs_info_msg_0_ ]] && return
 
+  local color
   if [[ -n $vcs_info_msg_3_ ]]; then
     # unstaged changes
     color=$'%{\e[1;31m%}'
