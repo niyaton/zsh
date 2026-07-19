@@ -21,12 +21,10 @@ function precmd(){
 local user_color=$'%{\e[%(!.0;31.1;32)m%}'
 local reset_color=$'%{\e[0m%}'
 
-function check_git_untracked_file(){
-  [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return
+function _check_git_untracked_file(){
+  [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 1
 
-  if [[ -n $(command git ls-files --others --exclude-standard 2>/dev/null) ]]; then
-    echo -n "%{\e[1;31m%}●%{${reset_color}%}"
-  fi
+  [[ -n $(command git ls-files --others --exclude-standard 2>/dev/null) ]]
 }
 
 function _get_vcs_prompt(){
@@ -44,7 +42,12 @@ function _get_vcs_prompt(){
     color=$user_color
   fi
 
-  echo -n "%{$color%}${vcs_info_msg_1_}%{$reset_color%}$(check_git_untracked_file) "
+  local untracked=""
+  if _check_git_untracked_file; then
+    untracked="%{\e[1;31m%}●%{${reset_color}%}"
+  fi
+
+  echo -n "%{$color%}${vcs_info_msg_1_}%{$reset_color%}${untracked} "
 }
 
 function _get_python_venv_prompt(){
