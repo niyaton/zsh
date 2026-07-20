@@ -61,8 +61,6 @@ _get_vcs_prompt() {
   echo -n "${color}${vcs_info_msg_1_}${_reset_color}${untracked} "
 }
 
-
-
 # setting left prompt
 _host_prefix=""
 if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]]; then
@@ -77,17 +75,19 @@ PROMPT2="${_user_color}%n ${_reset_color}\$(_get_vcs_prompt)%F{green}▶%f "
 setopt transient_rprompt
 
 _get_python_venv_prompt() {
-  if [[ -v VIRTUAL_ENV ]]; then
-    local venv_name="${VIRTUAL_ENV:t}"
-    echo -n "|${venv_name}"
-  fi
+  [[ -v VIRTUAL_ENV ]] || return
+
+  # VIRTUAL_ENV:t means the basename of the virtual environment path.
+  echo -n "|${VIRTUAL_ENV:t}"
 }
 
 _get_anaconda_prompt() {
-  if [[ -v CONDA_DEFAULT_ENV ]]; then
-    echo -n "|🐍${CONDA_DEFAULT_ENV:#base}"
-  fi
+  [[ -v CONDA_DEFAULT_ENV ]] || return
+
+  # show the conda environment name, but hide "base" if it's the default environment.
+  echo -n "|🐍${CONDA_DEFAULT_ENV:#base}"
 }
+
 _rprompt_color='%B%F{yellow}'
 RPROMPT="${_rprompt_color}[%~]"
 RPROMPT+="\$(_get_anaconda_prompt)"
