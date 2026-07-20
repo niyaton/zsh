@@ -79,7 +79,7 @@ setopt transient_rprompt
 _get_python_venv_prompt() {
   if [[ -v VIRTUAL_ENV ]]; then
     local venv_name="${VIRTUAL_ENV:t}"
-    echo -n "|${venv_name:#venv}"
+    echo -n "|${venv_name}"
   fi
 }
 
