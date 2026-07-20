@@ -87,7 +87,12 @@ _get_vcs_prompt() {
     untracked="${_untracked_color}●${_reset_color}"
   fi
 
-  echo -n "${color}${_git_symbol}${vcs_info_msg_1_}${_reset_color}${untracked} "
+  local prompt="${color}${_git_symbol}${vcs_info_msg_1_}${_reset_color}"
+  prompt+="${untracked}"
+  if [[ -n $vcs_info_msg_4_ ]]; then
+    prompt+=" ${_user_color}(${vcs_info_msg_4_})${_reset_color}"
+  fi
+  echo -n "${prompt} "
 }
 
 # setting left prompt
