@@ -61,19 +61,7 @@ _get_vcs_prompt() {
   echo -n "${color}${vcs_info_msg_1_}${_reset_color}${untracked} "
 }
 
-_get_python_venv_prompt() {
-  if [[ -v VIRTUAL_ENV ]]; then
-    local venv_name
-    venv_name=`basename ${VIRTUAL_ENV}`
-    echo -n "${_rprompt_color}|${venv_name:#venv}${_reset_color}"
-  fi
-}
 
-_get_anaconda_prompt() {
-  if [[ -v CONDA_DEFAULT_ENV ]]; then
-    echo -n "${_rprompt_color}|🐍${CONDA_DEFAULT_ENV:#base}${_reset_color}"
-  fi
-}
 
 # setting left prompt
 _host_prefix=""
@@ -87,8 +75,22 @@ PROMPT2="${_user_color}%n ${_reset_color}\$(_get_vcs_prompt)%F{green}▶%f "
 # setting right prompt
 # Hide the right prompt after pressing Enter to keep command history clean.
 setopt transient_rprompt
+
+_get_python_venv_prompt() {
+  if [[ -v VIRTUAL_ENV ]]; then
+    local venv_name
+    venv_name=`basename ${VIRTUAL_ENV}`
+    echo -n "|${venv_name:#venv}"
+  fi
+}
+
+_get_anaconda_prompt() {
+  if [[ -v CONDA_DEFAULT_ENV ]]; then
+    echo -n "|🐍${CONDA_DEFAULT_ENV:#base}"
+  fi
+}
 _rprompt_color='%B%F{yellow}'
-RPROMPT="${_rprompt_color}[%~]${_reset_color}"
+RPROMPT="${_rprompt_color}[%~]"
 RPROMPT+="\$(_get_anaconda_prompt)"
 RPROMPT+="\$(_get_python_venv_prompt)"
-RPROMPT+="${_rprompt_color}|%*${_reset_color}"
+RPROMPT+="|%*${_reset_color}"
