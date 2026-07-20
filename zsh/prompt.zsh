@@ -51,6 +51,16 @@ if (( EUID == 0 )); then
   _prompt_symbol='#'
 fi
 
+enable_show_git_untracked() {
+  _show_git_untracked=true
+}
+
+disable_show_git_untracked() {
+  _show_git_untracked=false
+}
+
+enable_show_git_untracked
+
 _check_git_untracked_file() {
   [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 1
 
@@ -73,7 +83,7 @@ _get_vcs_prompt() {
   fi
 
   local untracked=""
-  if _check_git_untracked_file; then
+  if [[ $_show_git_untracked == true ]] && _check_git_untracked_file; then
     untracked="${_untracked_color}●${_reset_color}"
   fi
 
