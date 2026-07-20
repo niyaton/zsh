@@ -22,7 +22,7 @@ zstyle ':vcs_info:*' nvcsformats ""
 zstyle ':vcs_info:*' max-exports 5
 zstyle ':vcs_info:*' check-for-changes true
 
-#colors
+# colors
 _user_color='%F{green}'
 _staged_color='%B%F{yellow}'
 _unstaged_color='%B%F{red}'
