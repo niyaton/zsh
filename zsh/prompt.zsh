@@ -22,15 +22,28 @@ zstyle ':vcs_info:*' nvcsformats ""
 zstyle ':vcs_info:*' max-exports 5
 zstyle ':vcs_info:*' check-for-changes true
 
+#colors
 _user_color='%F{green}'
 _staged_color='%B%F{yellow}'
 _unstaged_color='%B%F{red}'
 _untracked_color='%B%F{red}'
 _reset_color='%b%f'
 
+use_nerd() {
+  _git_symbol=''
+  _venv_symbol=''
+  _conda_symbol='🐍'
+}
+
+unuse_nerd() {
+  _git_symbol='git:'
+  _venv_symbol='venv:'
+  _conda_symbol='conda:'
+}
+
+# symbols
 _prompt_symbol='$'
-_venv_symbol=''
-_conda_symbol='🐍'
+use_nerd
 
 if (( EUID == 0 )); then
   # root user
@@ -64,7 +77,7 @@ _get_vcs_prompt() {
     untracked="${_untracked_color}●${_reset_color}"
   fi
 
-  echo -n "${color}${vcs_info_msg_1_}${_reset_color}${untracked} "
+  echo -n "${color}${_git_symbol}${vcs_info_msg_1_}${_reset_color}${untracked} "
 }
 
 # setting left prompt
