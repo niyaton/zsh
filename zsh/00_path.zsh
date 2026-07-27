@@ -4,7 +4,6 @@ case "${OSTYPE}" in
 	darwin*)
 		path=(
 			"$HOME/local/bin"
-			"$HOME/.nodebrew/current/bin"
 			/usr/local/bin
 			/usr/local/sbin
 			/opt/homebrew/bin
