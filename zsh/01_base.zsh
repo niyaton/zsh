@@ -1,50 +1,21 @@
-zstyle :compinstall filename "${HOME}/.zshrc"
-setopt extended_glob
-
-# from https://gist.github.com/ctechols/ca1035271ad134841284
-# The globbing is a little complicated here:
-# - '#q' is an explicit glob qualifier that makes globbing work within zsh's [[ ]] construct.
-# - 'N' makes the glob pattern evaluate to nothing when it doesn't match (rather than throw a globbing error)
-# - '.' matches "regular files"
-# - 'mh+24' matches files (or directories or whatever) that are older than 24 hours.
 autoload -Uz compinit
-if [[ -n ${ZSHHOME}/compaudit_check(#qN.mh+24) ]]; then
-	compinit -d
-	touch ${ZSHHOME}/compaudit_check
-else
-	compinit -C -d
-fi
+compinit
 
-#setting keybind
-bindkey -v
+# macOS標準のEmacs風キー操作（Ctrl-A、Ctrl-Eなど）を使う。
+bindkey -e
 
-#setting cd history
-setopt auto_pushd
+setopt auto_cd          # ディレクトリ名だけでcdできる
+setopt auto_pushd       # cdの履歴を保存する
+setopt interactive_comments
 
-#coloring ls
-# TODO too slow
-case "${OSTYPE}" in
-	darwin*)
-		eval `gdircolors ~/.dircolors`
-		;;
-	linux*)
-		eval `dircolors ~/.dircolors`
-		;;
-esac
-zstyle ':completion:*:default' list-colors ${LS_COLORS}
-
-update_zshrc(){
-  zcompile ~/.zshrc
-  for i in $ZSHHOME/*.zsh; do
-     echo 'compiling zshrc.' $i
-     zcompile $i
-  done
-}
+# 大文字・小文字を区別せず、途中までの入力でも補完する。
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*'
+zstyle ':completion:*' menu select
 
 if command -v nvim >/dev/null 2>&1; then
-    export EDITOR=nvim
-    export VISUAL=nvim
+  export EDITOR=nvim
+  export VISUAL=nvim
 else
-    export EDITOR=vim
-    export VISUAL=vim
+  export EDITOR=vim
+  export VISUAL=vim
 fi

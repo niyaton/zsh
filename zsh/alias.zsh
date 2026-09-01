@@ -1,17 +1,11 @@
-#setting alias
+# macOS標準コマンドだけで使える短縮形。
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
 
-case "${OSTYPE}" in
-darwin*)
-	alias ls="gls -hF --color=auto"
-	;;
-linux*)
-	alias ls="ls -hF --color=auto"
-	;;
-esac
-
-alias usejp="export LANG=ja_JP.UTF-8"
-alias useen="export LANG=en_US.UTF-8"
-alias unusejp="export LANG="
+# nvimがある場合だけvimとして使う。
 if (( $+commands[nvim] )); then
   alias vim='nvim'
 fi
