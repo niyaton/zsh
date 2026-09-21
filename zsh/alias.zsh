@@ -2,10 +2,14 @@
 
 case "${OSTYPE}" in
 darwin*)
-	alias ls="gls -hF --color=auto"
+	if (( $+commands[gls] )); then
+		alias ls='gls -hF --color=auto'
+	else
+		alias ls='ls -hF'
+	fi
 	;;
 linux*)
-	alias ls="ls -hF --color=auto"
+	alias ls='ls -hF --color=auto'
 	;;
 esac
 

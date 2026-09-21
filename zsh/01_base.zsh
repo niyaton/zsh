@@ -25,13 +25,17 @@ setopt auto_pushd
 # TODO too slow
 case "${OSTYPE}" in
 	darwin*)
-		eval `gdircolors ~/.dircolors`
+		if (( $+commands[gdircolors] )) && [[ -r ~/.dircolors ]]; then
+			eval "$(gdircolors ~/.dircolors)"
+		fi
 		;;
 	linux*)
-		eval `dircolors ~/.dircolors`
+		if (( $+commands[dircolors] )) && [[ -r ~/.dircolors ]]; then
+			eval "$(dircolors ~/.dircolors)"
+		fi
 		;;
 esac
-zstyle ':completion:*:default' list-colors ${LS_COLORS}
+[[ -n ${LS_COLORS:-} ]] && zstyle ':completion:*:default' list-colors ${LS_COLORS}
 
 update_zshrc(){
   zcompile ~/.zshrc

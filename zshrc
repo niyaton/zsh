@@ -14,6 +14,6 @@ if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
-if [[ -z $TMUX && $TERM_PROGRAM != WezTerm ]]; then
+if [[ -o interactive ]] && (( $+commands[tmux] )) && [[ -z $TMUX && $TERM_PROGRAM != WezTerm ]]; then
 	attach_tmux
 fi
