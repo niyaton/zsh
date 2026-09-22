@@ -7,11 +7,11 @@ macOSを中心に使用している個人用のZsh設定です。学生用の簡
 ```sh
 git clone git@github.com:niyaton/zsh.git
 cd zsh
-./setup.sh
+zsh setup.sh
 exec zsh
 ```
 
-`setup.sh`は、このリポジトリの`zsh/`、`zshrc`、`Dracula.dircolors`へのシンボリックリンクをHOMEに作ります。既存ファイルがある場合は、削除せず日時と識別番号付きの`.backup-*`へ退避します。同じリポジトリに対して再実行しても既存リンクはそのまま利用します。
+`setup.sh`は、このリポジトリの`zsh/`、`zshrc`、`Dracula.dircolors`へのシンボリックリンクをHOMEに作ります。既存のシンボリックリンクは置き換えるため、繰り返し実行できます。通常ファイルやディレクトリがすでに存在する場合は、上書きせずエラーで停止します。
 
 ## 主な構成
 
