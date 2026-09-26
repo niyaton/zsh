@@ -16,6 +16,7 @@ esac
 alias usejp="export LANG=ja_JP.UTF-8"
 alias useen="export LANG=en_US.UTF-8"
 alias unusejp="export LANG="
+alias zstdrm='zstd --rm'
 if (( $+commands[nvim] )); then
   alias vim='nvim'
 fi
