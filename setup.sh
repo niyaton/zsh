@@ -23,6 +23,5 @@ repo_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
 link_config "$repo_dir/zsh" "$HOME/.zsh"
 link_config "$repo_dir/zshrc" "$HOME/.zshrc"
-link_config "$repo_dir/Dracula.dircolors" "$HOME/.dircolors"
 
 printf 'Setup complete. Please restart zsh to load the new configuration.\n'
