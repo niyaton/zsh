@@ -1,3 +1,11 @@
+update_zshrc(){
+  zcompile ~/.zshrc
+  for i in $ZSHHOME/*.zsh; do
+     echo 'compiling zshrc.' $i
+     zcompile $i
+  done
+}
+
 function encrypt() {
   echo 'encrypt was removed. Use age instead.'
   echo ''

@@ -16,8 +16,10 @@ exec zsh
 ## 主な構成
 
 - `zsh/00_path.zsh`: HomebrewなどのPATH
-- `zsh/01_base.zsh`: 補完、キー操作、色、エディタ
+- `zsh/01_base.zsh`: 補完、キー操作、基本オプション
 - `zsh/alias.zsh`: alias
+- `zsh/dircolors.zsh`: 色設定のキャッシュと更新
+- `zsh/editor.zsh`: 既定エディタの選択と`vim`のalias
 - `zsh/functions.zsh`: 汎用関数
 - `zsh/history.zsh`: 履歴と検索
 - `zsh/prompt.zsh`: Git・Python環境を表示するプロンプト
