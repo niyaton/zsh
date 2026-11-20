@@ -2,9 +2,6 @@
 update_dircolors() {
   # :A resolves the ~/.zsh symlink; :h selects its parent (the repository).
   local dircolors_file="${ZSHHOME:A:h}/Dracula.dircolors"
-  if ! command -v gdircolors >/dev/null; then
-    return
-  fi
 
   local cache_dir="$ZSHHOME/.cache/dircolors"
   local cache_file="$cache_dir/${OSTYPE}-${TERM//\//_}.sh"

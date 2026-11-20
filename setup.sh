@@ -21,6 +21,8 @@ link_config() {
 # set repo_dir to the absolute path of the directory containing this script
 repo_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
+zsh "$repo_dir/doctor.zsh"
+
 link_config "$repo_dir/zsh" "$HOME/.zsh"
 link_config "$repo_dir/zshrc" "$HOME/.zshrc"
 

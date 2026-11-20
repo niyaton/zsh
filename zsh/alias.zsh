@@ -1,8 +1,4 @@
-if command -v gls >/dev/null; then
-  alias ls='gls -hF --color=auto'
-else
-  alias ls='ls -hF'
-fi
+alias ls='gls -hF --color=auto'
 
 alias usejp="export LANG=ja_JP.UTF-8"
 alias useen="export LANG=en_US.UTF-8"
