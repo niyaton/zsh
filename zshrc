@@ -7,7 +7,3 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a -x $ZSHHOME ]; then
 fi
 
 [[ -f ~/.config/fzf/fzf.zsh ]] && source ~/.config/fzf/fzf.zsh
-
-if command -v mise >/dev/null; then
-  eval "$(mise activate zsh)"
-fi
