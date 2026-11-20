@@ -1,4 +1,3 @@
-#setting history
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=120000
 SAVEHIST=100000
