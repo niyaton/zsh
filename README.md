@@ -13,6 +13,27 @@ exec zsh
 
 `setup.sh`は、このリポジトリの`zsh/`と`zshrc`へのシンボリックリンクをHOMEに作ります。既存のシンボリックリンクは置き換えるため、繰り返し実行できます。通常ファイルやディレクトリがすでに存在する場合は、上書きせずエラーで停止します。色設定はリポジトリ内の`Dracula.dircolors`を直接読み込むため、`~/.dircolors`は不要です。
 
+### 導入時のHomebrewパス確認
+
+`zsh/00_path.zsh`はApple SiliconのHomebrew配置（`/opt/homebrew`）を前提にしています。セットアップ前に、導入先の実際の配置と固定パスが一致することを確認してください。`setup.sh`による自動検出・修正は行いません。
+
+```sh
+command -v brew
+brew --prefix
+brew --cellar
+brew --repository
+```
+
+シェル起動時の外部コマンド実行を避けるため、Homebrew用の環境変数と検索パスを直接設定しています。導入時やHomebrew更新後など、折に触れてCodexに`brew shellenv zsh`の出力と比較させ、変更の必要性を検討してください。
+
+既存のPATHによって`brew shellenv`が出力を省略することがあるため、比較用にはPATHを最小限にして実行します（以下は`/opt/homebrew`にある場合）。
+
+```sh
+PATH=/usr/bin:/bin:/usr/sbin:/sbin /opt/homebrew/bin/brew shellenv zsh
+```
+
+比較対象は`HOMEBREW_*`・`PATH`・`FPATH`・`MANPATH`・`INFOPATH`です。候補の有無だけでなく、コマンド・補完・ドキュメントの検索優先順位も確認してから変更します。
+
 ## 主な構成
 
 - `zsh/00_path.zsh`: HomebrewなどのPATH
