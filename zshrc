@@ -5,5 +5,3 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a -x $ZSHHOME ]; then
         [ \( -f $i -o -h $i \) -a -r $i ] && source $i
     done
 fi
-
-[[ -f ~/.config/fzf/fzf.zsh ]] && source ~/.config/fzf/fzf.zsh

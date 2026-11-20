@@ -4,3 +4,4 @@
 *.swp
 zsh/.cache/
 /zsh/compaudit_check
+/zsh/fzf.zsh

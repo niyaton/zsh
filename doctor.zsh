@@ -17,11 +17,12 @@ for tool in zstd python3 mise; do
   fi
 done
 
-if [[ -f ~/.config/fzf/fzf.zsh && -r ~/.config/fzf/fzf.zsh ]]; then
-  printf 'OK: ~/.config/fzf/fzf.zsh\n'
+fzf_script="${0:A:h}/zsh/fzf.zsh"
+if [[ -f "$fzf_script" && -r "$fzf_script" ]]; then
+  printf 'OK: %s\n' "$fzf_script"
 else
-  printf 'Missing or unreadable optional file: ~/.config/fzf/fzf.zsh\n'
-  printf '%s\n' 'Generate it with: mkdir -p ~/.config/fzf && fzf --zsh > ~/.config/fzf/fzf.zsh'
+  printf 'Missing or unreadable optional file: %s\n' "$fzf_script"
+  printf 'Generate it with: fzf --zsh > %q\n' "$fzf_script"
 fi
 
 exit "$missing_required"
