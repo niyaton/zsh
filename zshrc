@@ -6,10 +6,8 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a -x $ZSHHOME ]; then
     done
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.config/fzf/fzf.zsh ]] && source ~/.config/fzf/fzf.zsh
 
-# TODO:
-# Replace this runtime activation with a generated script (zsh build).
-if command -v mise >/dev/null 2>&1; then
+if command -v mise >/dev/null; then
   eval "$(mise activate zsh)"
 fi
