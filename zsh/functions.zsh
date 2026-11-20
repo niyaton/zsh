@@ -42,3 +42,11 @@ tz() {
   printf 'Created: %s\n' "${dir}.tar.zst"
   printf 'Archived path: %s/ (parent directories are preserved; a leading / is removed).\n' "${dir#/}"
 }
+
+print-color-palette() {
+  local i
+  for i in {000..255}; do
+    printf "\e[38;5;${i}m ${i}\e[0m"
+    [ $(($i % 16)) -eq 15 ] && echo
+  done
+}

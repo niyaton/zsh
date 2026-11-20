@@ -15,7 +15,7 @@ if command -v mise >/dev/null 2>&1; then
 fi
 
 if [[ -o interactive ]] && (( $+commands[tmux] )) && [[ -z $TMUX && $TERM_PROGRAM != WezTerm ]]; then
-	attach_tmux
+	attach-tmux
 fi
 
 # WezTerm: copy the last completed command and its terminal output.
