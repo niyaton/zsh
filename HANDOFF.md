@@ -1,6 +1,7 @@
 # Zsh整備の引き継ぎ
 
-- 個人用は `main`。Mac Studioの学生配布用は `codex/student-macstudio` で、導入ガイドもそちらにある。
+- 個人用Macは `main`、個人用Linuxは `linux`（worktreeは `~/work/zsh-linux`）。Mac Studioの学生配布用は `codex/student-macstudio` で、導入ガイドもそちらにある。
+- 共通の修正は `main` に入れ、OS固有の差分とは別のコミットにする。`linux` には必要な共通コミットを `cherry-pick` し、履歴を組み替えてよい場合は `rebase` で追従させる。
 - 変更は一項目ずつ本人のレビューを通し、依頼された範囲をコミットする。Gitは `/opt/homebrew/bin/git` を使う。pushは本人がまとめて行う。
 
 ## 運用メモ

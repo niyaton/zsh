@@ -1,15 +1,8 @@
 # Regenerate colors for the current and previously cached terminal types.
 update_dircolors() {
-  local dircolors_command
-  case "$OSTYPE" in
-    darwin*) dircolors_command=gdircolors ;;
-    linux*) dircolors_command=dircolors ;;
-    *) return ;;
-  esac
   # :A resolves the ~/.zsh symlink; :h selects its parent (the repository).
   local dircolors_file="${ZSHHOME:A:h}/Dracula.dircolors"
-  # Equivalent command check: ! command -v "$dircolors_command" >/dev/null
-  if (( ! $+commands[$dircolors_command] )); then
+  if ! command -v gdircolors >/dev/null; then
     return
   fi
 
@@ -26,7 +19,7 @@ update_dircolors() {
     cached_term=${${cached_file:t}#${OSTYPE}-}
     cached_term=${cached_term%.sh}
     [[ "$cached_file" == "$cache_file" ]] && cached_term=$TERM
-    TERM="$cached_term" "$dircolors_command" -b "$dircolors_file" > "$cached_file" || return
+    TERM="$cached_term" gdircolors -b "$dircolors_file" > "$cached_file" || return
   done
 
   source "$cache_file" || return

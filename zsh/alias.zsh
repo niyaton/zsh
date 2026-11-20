@@ -1,8 +1,6 @@
 if command -v gls >/dev/null; then
   alias ls='gls -hF --color=auto'
-elif [[ $OSTYPE == linux* ]]; then
-  alias ls='ls -hF --color=auto'
-elif [[ $OSTYPE == darwin* ]]; then
+else
   alias ls='ls -hF'
 fi
 
