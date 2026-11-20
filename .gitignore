@@ -3,3 +3,4 @@
 *.zwc
 *.swp
 zsh/.cache/
+/zsh/compaudit_check
