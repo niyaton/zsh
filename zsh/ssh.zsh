@@ -59,3 +59,29 @@ _ssh_hosts() {
   return $result
 }
 
+# Static config listing: does not execute Match exec (including reachability checks).
+ssh-list() {
+  if ! (( $+commands[python3] )); then
+    print -u2 'ssh-list: python3 is required'
+    return 1
+  fi
+  command python3 "${ZSHHOME:-$HOME/.zsh}/ssh-list.py" "$@"
+}
+
+ssh-pick() {
+  if ! (( $+commands[fzf] )); then
+    print -u2 'ssh-pick: fzf is required'
+    return 1
+  fi
+  local listing selected host
+  listing=$(ssh-list) || return $?
+  selected=$(print -r -- "$listing" | command fzf \
+    --header-lines=1 --delimiter=$'\t' --no-multi \
+    --prompt='SSH > ' --height=80% --layout=reverse \
+    --bind='enter:accept' --query="${1:-}") || return 0
+  [[ -n $selected ]] || return 0
+  host=${selected%%$'\t'*}
+  host=${host// /}
+  print -r -- "ssh $host"
+  command ssh "$host"
+}
