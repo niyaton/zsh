@@ -11,7 +11,7 @@ for tool in gls gdircolors nvim; do
   fi
 done
 
-for tool in fzf zstd python3 mise tmux; do
+for tool in fzf zstd python3 mise; do
   if ! command -v "$tool" >/dev/null; then
     printf 'Missing optional tool: %s\n' "$tool"
   fi

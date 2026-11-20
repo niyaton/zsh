@@ -9,7 +9,7 @@
 - `00_path.zsh` のHomebrew設定はApple Siliconの `/opt/homebrew` を前提とする。導入時や更新後に `brew --prefix`、`brew --cellar`、`brew --repository` を確認し、必要に応じて `PATH=/usr/bin:/bin:/usr/sbin:/sbin /opt/homebrew/bin/brew shellenv zsh` と比較する。コマンド検索は個人用と `/usr/local` をHomebrewより前に置き、manページも `/usr/local` を優先する。補完はmacOS付属が先。
 - 色設定はリポジトリ内の `Dracula.dircolors` を使う。OS・TERM別の生成物は `zsh/.cache/dircolors/` に置く。色を変えたら `update_dircolors`。既存の端末種別もまとめて再生成する。
 - `fcd` はfzfで移動先を選ぶ。 `tz DIR` はtar＋zstdで圧縮し、渡したパスの階層を保持する。 `zstdrm -d FILE.zst` は展開後に元ファイルを削除する。圧縮時の元ファイル削除には `zstdrm FILE`。 `update_zshrc` は設定のコンパイル用。
-- Ctrl-P／Ctrl-Nは入力済みの接頭辞で履歴を前後に検索する。Neovimがあれば既定エディタにする。miseは起動時に有効化し、tmuxはWezTerm外の対話シェルで条件付き自動接続する。
+- Ctrl-P／Ctrl-Nは入力済みの接頭辞で履歴を前後に検索する。Neovimがあれば既定エディタにする。miseは起動時に有効化する。tmuxの自動接続はLinux側に残している。
 
 ## レビューの続き
 
