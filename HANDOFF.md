@@ -13,9 +13,8 @@
 
 ## レビューの続き
 
-- SSHのTab補完は `8fd9aac`、`ssh-list`・`ssh-pick` と `zsh/ssh-list.py` は `63c3139` でコミット済み。Pythonで明示的なHost名を一覧にし、fzfで選択して接続できる。一覧は通信や `Match exec` を実行せず、対応外の `Include` や `Match` 形式はエラーにする。Tab補完側は標準実装由来の循環Includeを検出しない。
+- SSHのTab補完は `8fd9aac`、`ssh-list`・`ssh-pick` と `zsh/ssh-list.py` は `63c3139` でコミット済み。Pythonで明示的なHost名を一覧にし、fzfで選択して接続できる。一覧は通信や `Match exec` を実行せず、対応外の `Include` や `Match` 形式はエラーにする。
 - プロンプトのGit表示は以前このリポジトリで約70ms。ブランチ・変更状態・操作状態を保ちながらGit呼び出しをまとめる案は未実装。
-- `tz` はパイプ途中の失敗を返すが、不完全な出力が残り得る。
 - MacからDockerは削除済み。 `docker.zsh` はLinux側で使っているか確認してから判断する。GPG関数はageで代替できるか検討するため `WIP: GPG helpers (consider age instead)` のstashに退避済み。
 
 # References

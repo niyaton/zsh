@@ -37,9 +37,32 @@ tz() {
     return 1
   fi
 
-  tar -cf - -- "$dir" | zstd -T0 -o "${dir}.tar.zst" || return $?
+  local archive="${dir}.tar.zst"
+  if [[ -e "$archive" || -L "$archive" ]]; then
+    printf 'Error: %s already exists.\n' "$archive" >&2
+    return 1
+  fi
 
-  printf 'Created: %s\n' "${dir}.tar.zst"
+  # Publish the archive only after both tar and zstd succeed.
+  local temporary_file
+  temporary_file=$(mktemp -- "${archive}.tmp.XXXXXXXX") || return
+  {
+    tar -cf - -- "$dir" | zstd -T0 -c >| "$temporary_file" || return
+    if [[ -d "$archive" ]]; then
+      printf 'Error: %s already exists.\n' "$archive" >&2
+      return 1
+    fi
+    command mv -nh -- "$temporary_file" "$archive" || return
+    # mv -n may report success when it skips an existing destination.
+    if [[ -e "$temporary_file" ]]; then
+      printf 'Error: %s already exists.\n' "$archive" >&2
+      return 1
+    fi
+  } always {
+    command rm -f -- "$temporary_file"
+  }
+
+  printf 'Created: %s\n' "$archive"
   printf 'Archived path: %s/ (parent directories are preserved; a leading / is removed).\n' "${dir#/}"
 }
 
